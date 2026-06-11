@@ -18,7 +18,7 @@ def generate_trajectory(input_video_path, output_video_path):
 
     out = cv2.VideoWriter(
         output_video_path,
-        cv2.VideoWriter_fourcc(*'mp4v'),
+        cv2.VideoWriter_fourcc(*'XVID'),
         fps,
         (width, height)
     )
