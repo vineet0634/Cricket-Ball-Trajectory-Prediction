@@ -145,7 +145,17 @@ if uploaded_file is not None:
 
             with col2:
                 st.subheader("Trajectory Video")
-                st.video(output_path)
+                import os
+
+                st.write("Exists:", os.path.exists(output_path))
+
+                if os.path.exists(output_path):
+                    st.write("Size:", os.path.getsize(output_path), "bytes")
+
+                    with open(output_path, "rb") as video_file:
+                        video_bytes = video_file.read()
+
+                    st.video(video_bytes)
 
         st.markdown("---")
         
