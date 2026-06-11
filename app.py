@@ -146,10 +146,10 @@ if uploaded_file is not None:
             with col2:
                 st.subheader("Trajectory Video")
 
-                    with open(output_path, "rb") as video_file:
-                        video_bytes = video_file.read()
+                with open(output_path, "rb") as video_file:
+                    video_bytes = video_file.read()
 
-                    st.video(video_bytes)
+                st.video(video_bytes)
 
         st.markdown("---")
         
