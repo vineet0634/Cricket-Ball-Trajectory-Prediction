@@ -1,7 +1,6 @@
 from ultralytics import YOLO
 import cv2
 import numpy as np
-import subprocess
 import os
 
 def generate_trajectory(input_video_path, output_video_path):
@@ -115,17 +114,6 @@ def generate_trajectory(input_video_path, output_video_path):
     print("Output video path:", output_video_path)
     cap.release()
     out.release()
-    subprocess.run([
-        "ffmpeg",
-        "-y",
-        "-i",
-        temp_avi_path,
-        "-vcodec",
-        "libx264",
-        output_video_path
-    ])
-
-    os.remove(temp_avi_path)
 
     print("Video exists:", os.path.exists(output_video_path))
 
