@@ -18,7 +18,7 @@ def generate_trajectory(input_video_path, output_video_path):
 
     out = cv2.VideoWriter(
         output_video_path,
-        cv2.VideoWriter_fourcc(*'avc1'),
+        cv2.VideoWriter_fourcc(*'mp4v'),
         fps,
         (width, height)
     )
@@ -108,6 +108,13 @@ def generate_trajectory(input_video_path, output_video_path):
 
         out.write(frame)
 
+    print("Output video path:", output_video_path)
     cap.release()
     out.release()
+    import os
+
+    print("Video exists:", os.path.exists(output_video_path))
+
+    if os.path.exists(output_video_path):
+        print("Video size:", os.path.getsize(output_video_path))
     
