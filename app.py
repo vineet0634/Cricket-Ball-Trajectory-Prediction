@@ -107,6 +107,9 @@ if uploaded_file is not None:
 
     if st.button("🚀 Generate Trajectory"):
 
+        os.makedirs("uploads", exist_ok=True)
+        os.makedirs("output_videos", exist_ok=True)
+
         # Save uploaded video
         upload_path = os.path.join(
             "uploads",
