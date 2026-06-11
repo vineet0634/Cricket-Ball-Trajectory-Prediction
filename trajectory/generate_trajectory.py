@@ -2,6 +2,7 @@ from ultralytics import YOLO
 import cv2
 import numpy as np
 import os
+import imageio
 
 def generate_trajectory(input_video_path, output_video_path):
 
@@ -17,16 +18,10 @@ def generate_trajectory(input_video_path, output_video_path):
     if fps == 0:
         fps = 30
 
-    temp_avi_path = "output_videos/temp_output.avi"
 
-    out = cv2.VideoWriter(
-        temp_avi_path,
-        cv2.VideoWriter_fourcc(*'XVID'),
-        fps,
-        (width, height)
-    )
 
     trajectory = []
+    frames = []
 
     MAX_TRAIL = 60
 
@@ -109,11 +104,17 @@ def generate_trajectory(input_video_path, output_video_path):
                             3
                         )
 
-        out.write(frame)
+        frames.append(
+            cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        )
 
     print("Output video path:", output_video_path)
     cap.release()
-    out.release()
+    imageio.mimsave(
+        output_video_path,
+        frames,
+        fps=fps
+    )
 
     print("Video exists:", os.path.exists(output_video_path))
 
